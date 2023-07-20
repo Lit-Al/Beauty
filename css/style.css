@@ -126,7 +126,7 @@ main {
 
 .avtorization__label::before {
   content: "";
-  background-image: url(/img/mail.svg);
+  background-image: url(../img/mail.svg);
   width: 19.403px;
   height: 20px;
   position: absolute;
@@ -158,7 +158,7 @@ main {
 
 .confirmation__label::before {
   content: "";
-  background-image: url(/img/lock.svg);
+  background-image: url(../img/lock.svg);
   width: 19.403px;
   height: 20px;
   position: absolute;
