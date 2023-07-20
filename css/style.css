@@ -213,11 +213,13 @@ main {
   width: 109px;
   height: 111px;
   margin-top: 95px;
+  border-radius: 50%;
 }
 
 .master__avatar {
   width: 55px;
   height: 55px;
+  border-radius: 50%;
 }
 
 .user-name {
@@ -382,6 +384,7 @@ main {
 .before-after__item figure img{
   width: 75px;
   height: 75px;
+  border-radius: 50%;
 }
 
 .before-after__item figcaption{
@@ -559,6 +562,11 @@ transform: scale(.8);
 
 .upload-photo-container {
   padding-top: 100px;
+}
+
+.upload-photo-background {
+  width: 375px;
+  height: 169px;
 }
 
 /* EVALUATIONS */
