@@ -452,6 +452,10 @@ main {
   position: relative;
 }
 
+.evulation-radio:disabled + span {
+  opacity: .3;
+}
+
 .evaluation-judge + span {
   height: 22px;
 }
