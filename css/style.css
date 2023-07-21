@@ -83,7 +83,7 @@ body {
 .go-back {
   position: absolute;
   left: 9px;
-  top: 60px;
+  top: 50px;
   text-decoration: none;
   color: #282828;
   font-size: 17px;
@@ -757,7 +757,7 @@ main {
 }
 
 .upload-photo-container {
-  padding-top: 100px;
+  padding-top: 90px;
 }
 
 .upload-photo-background {
