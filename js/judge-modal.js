@@ -10,25 +10,6 @@ let numberBalls = 0;
 
 let arr = [];
 
-function checkType(node) {
-  if (!arr.includes(node.name)) {
-  numberBalls += + node.value
-  }
-  else {
-    node.disabled = true
-  }
-  console.log(!arr.includes(node.name));
-  arr.push(node.name)
-  for (const i of radio) {
-    if (i.name === node.name)
-      i.disabled = true
-  }
-  console.log(arr);
-  balls.innerHTML = numberBalls
-  ballsModal.innerHTML = numberBalls
-
-}
-
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   modal.classList.remove('visually-hidden');
@@ -40,3 +21,38 @@ closeBtn.addEventListener('click', function() {
   blur.classList.add('visually-hidden')
 });
 
+let calc = {
+  summ: 0, // сумма изначально 0
+  valueArray: (function () { //массив изначально создается на основе данных value выбранных кнопок
+    var array = [],
+      arrayLength = $(".evaluations-item").length;
+    for (var i = 0; i < arrayLength; i++) {
+      array[i] = parseInt($(".evaluations-item").eq(i).find("input:checked").attr("value")) || 0;
+    };
+    return array;
+  })(),
+  summation: function () { //суммирует значения массива с данными
+    var summ = 0,
+      i = this.valueArray.length - 1;
+    for (; i >= 0; i--) {
+      summ += this.valueArray[i];
+    };
+    this.summ = summ;
+    $("#balls").html(calc.summ);
+    $("#ballsModal").html(calc.summ);
+  },
+  changeEvent: function () {	//подключение обработчика событий
+    $("input[type='radio']").change(function () {	//для радиокнопок
+      var element = event.target,
+        elementValue = parseInt(element.value),
+        elementId = $(element).parents(".evaluations-item").index();
+      calc.valueArray[elementId] = elementValue;
+      calc.summation ();
+    });
+  },
+  init: function () {
+    calc.summation ();
+    calc.changeEvent ();
+  }
+};
+calc.init ();
