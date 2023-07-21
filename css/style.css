@@ -113,6 +113,8 @@ body {
 main {
   /* background-color: rgb(247, 247, 247); */
   margin-bottom: 53px;
+  width: 100%;
+  position: relative;
 }
 
 .logo {
@@ -804,7 +806,7 @@ main {
   right: 0;
   text-align: center;
   z-index: 100;
-  min-width: 360px;
+  /* min-width: 360px; */
   height: 100vh;
   padding-top: 150px;
 }
