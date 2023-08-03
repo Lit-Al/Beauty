@@ -10,10 +10,6 @@ let numberBalls = 0;
 
 let arr = [];
 
-window.onload=function(){
-  window.scrollBy(0, 30);
-}
-
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   modal.classList.remove('visually-hidden');
@@ -60,4 +56,5 @@ let calc = {
   }
 };
 calc.init ();
+
 
