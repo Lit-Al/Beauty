@@ -83,7 +83,7 @@ body {
 .go-back {
   position: absolute;
   left: 9px;
-  top: 60px;
+  top: 40px;
   text-decoration: none;
   color: #282828;
   font-size: 17px;
@@ -312,8 +312,19 @@ main {
 }
 
 .master__avatar {
+  border: 0.01px solid #000;
   width: 55px;
   height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.master__avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;	
   border-radius: 50%;
 }
 
@@ -354,7 +365,7 @@ main {
   padding: 4.5px 0;
 }
 
-.master > a div{
+.master > a > div{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -809,7 +820,7 @@ main {
   z-index: 100;
   /* min-width: 360px; */
   height: 100vh;
-  padding-top: 150px;
+  padding-top: 260px;
 }
 
 .checkMark div{
