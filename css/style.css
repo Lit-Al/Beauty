@@ -96,7 +96,7 @@ body {
 
 /* MODIFIER */
 
-.master--rated > a > div{
+.master--rated .master__content{
   width: 100%;
   border-radius: 5px;
   background: rgba(189, 255, 173, 0.74);  
@@ -349,7 +349,7 @@ main {
 }
 
 .masters-list {
-  margin-top: 21px;
+  margin-top: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -358,6 +358,44 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100%;
+  max-height: 285px;
+  overflow-y: scroll;
+  margin-bottom: 25px;
+  padding-right: 5px;
+}
+
+.masters-list::-webkit-scrollbar {
+  display: block;
+  width: 12px;
+}
+
+.masters-list::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #ff3e9ba6;
+  box-shadow: 0px 2px 5px 0px rgba(255, 0, 138, 0.50);
+}
+
+.masters-list::-webkit-scrollbar-track-piece:end {
+  background: #d0d0d08a;
+  margin-bottom: 50px; 
+  border: 0.2px solid #00000010;
+  border-radius: 3px;
+}
+
+.masters-list::-webkit-scrollbar-track-piece:start {
+  background: #d0d0d08a;
+  margin-top: 50px;
+  border: 0.2px solid #00000010;
+  border-radius: 3px;
+}
+
+.masters-list--judge {
+  max-height: none;
+  overflow-y: auto;
+}
+
+.masters-list--other .master__content{
+  background: rgba(219, 173, 255, 0.74);
 }
 
 .master {

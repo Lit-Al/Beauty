@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/normilize.css">
   <link rel="stylesheet" href="css/style.css">
+  <link href="node_modules\lightbox2\dist\css/lightbox.min.css" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;900&display=swap" rel="stylesheet">
@@ -24,11 +25,15 @@
             <span>ДО</span>
             <div>
                 <figure>
-                    <img src="img/germiona.png">
+                    <a href="img/background-eyebrows.png" data-lightbox="before">
+                        <img src="img/background-eyebrows.png" alt="">
+                    </a>
                     <figcaption>лицо</figcaption>
                 </figure>
                 <figure>
-                    <img src="img/germiona.png">
+                    <a href="https://fikiwiki.com/uploads/posts/2022-02/1644959320_13-fikiwiki-com-p-resnitsi-krasivie-kartinki-13.jpg" data-lightbox="before">
+                        <img src="https://fikiwiki.com/uploads/posts/2022-02/1644959320_13-fikiwiki-com-p-resnitsi-krasivie-kartinki-13.jpg" alt="">
+                    </a>
                     <figcaption>брови</figcaption>
                 </figure>
             </div>
@@ -37,11 +42,15 @@
             <span>ПОСЛЕ</span>
             <div>
                 <figure>
-                    <img src="img/germiona.png">
+                    <a href="https://mykaleidoscope.ru/uploads/posts/2022-06/1656590724_55-mykaleidoscope-ru-p-pomada-naturalnogo-tsveta-gub-devushka-kra-56.jpg" data-lightbox="after">
+                        <img src="https://mykaleidoscope.ru/uploads/posts/2022-06/1656590724_55-mykaleidoscope-ru-p-pomada-naturalnogo-tsveta-gub-devushka-kra-56.jpg" alt="">
+                    </a>
                     <figcaption>лицо</figcaption>
                 </figure>
                 <figure>
-                    <img src="img/germiona.png">
+                    <a href="https://almode.ru/uploads/posts/2022-02/1645973827_36-almode-ru-p-krasivie-pricheski-36.jpg" data-lightbox="after">
+                        <img src="https://almode.ru/uploads/posts/2022-02/1645973827_36-almode-ru-p-krasivie-pricheski-36.jpg" alt="">
+                    </a>
                     <figcaption>брови</figcaption>
                 </figure>
             </div>
@@ -297,7 +306,17 @@
   </main>
 
 
-
+  <script src="node_modules\lightbox2\dist\js\lightbox-plus-jquery.min.js"></script>
+  <script>
+    lightbox.option({
+        'albumLabel': "Фото %1 из %2",
+        'alwaysShowNavOnTouchDevices': true,
+        'fadeDuration': 100,
+        'imageFadeDuration': 100,
+        'resizeDuration': 400,
+        'wrapAround': true
+    })
+    </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="js/judge-modal.js"></script>
 </body>
