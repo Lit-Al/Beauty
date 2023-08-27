@@ -11035,7 +11035,7 @@ return jQuery;
   // Descriptions of all options available on the demo site:
   // http://lokeshdhakar.com/projects/lightbox2/index.html#options
   Lightbox.defaults = {
-    albumLabel: 'Image %1 of %2',
+    albumLabel: '%1',
     alwaysShowNavOnTouchDevices: false,
     fadeDuration: 600,
     fitImagesInViewport: true,
@@ -11062,9 +11062,6 @@ return jQuery;
     $.extend(this.options, options);
   };
 
-  Lightbox.prototype.imageCountLabel = function(currentImageNum, totalImages) {
-    return this.options.albumLabel.replace(/%1/g, currentImageNum).replace(/%2/g, totalImages);
-  };
 
   Lightbox.prototype.init = function() {
     var self = this;
@@ -11105,7 +11102,27 @@ return jQuery;
     // on the page below.
     //
     // Github issue: https://github.com/lokesh/lightbox2/issues/663
-    $('<div id="lightboxOverlay" tabindex="-1" class="lightboxOverlay"></div><div id="lightbox" tabindex="-1" class="lightbox"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt=""/><div class="lb-nav"><a class="lb-prev" role="button" tabindex="0" aria-label="Previous image" href="" ></a><a class="lb-next" role="button" tabindex="0" aria-label="Next image" href="" ></a></div><div class="lb-loader"><a class="lb-cancel" role="button" tabindex="0"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close" role="button" tabindex="0"></a></div></div></div></div>').appendTo($('body'));
+    $('<div id="lightboxOverlay" tabindex="-1" class="lightboxOverlay"></div><div id="lightbox" tabindex="-1" class="lightbox"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt=""/><div class="lb-nav"><a class="lb-prev" role="button" tabindex="0" aria-label="Previous image" href="" ></a><a class="lb-next" role="button" tabindex="0" aria-label="Next image" href="" ></a></div><div class="lb-loader"><a class="lb-cancel" role="button" tabindex="0"></a></div></div><div class="dots-container"> <span class="dot visually-hidden" onclick="currentSlide(0)"></span> <span class="dot visually-hidden" onclick="currentSlide(1)"></span> <span class="dot visually-hidden" onclick="currentSlide(2)"></span> <span class="dot visually-hidden" onclick="currentSlide(3)"></span> </div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span></span></div><div class="lb-closeContainer"><a class="lb-close" role="button" tabindex="0"></a></div></div></div></div>').appendTo($('body'));
+
+    let dots = document.getElementsByClassName('dot')
+    Lightbox.prototype.imageCountLabel = function(currentImageNum, totalImages) {
+       let n = this.options.albumLabel.replace(/%1/g, currentImageNum).slice(0,1)
+       let a = this.options.albumLabel.replace(/%1/g, currentImageNum).replace(/%2/g, totalImages).slice(2.-1);
+       let iter = 0;
+       for (const i of dots) {
+        i.classList.add('visually-hidden')
+        if (iter < a) {
+          i.classList.remove('visually-hidden')
+        }
+
+        i.classList.remove('dot--active')
+        iter++
+       }
+      dots[n - 1].className = dots[n - 1].className.replace(" dot--active", "");
+      dots[n - 1].className += " dot--active";
+
+      return this.options.albumLabel.replace(/%1/g, currentImageNum).replace(/%2/g, totalImages);
+    };
 
     // Cache jQuery objects
     this.$lightbox       = $('#lightbox');
@@ -11149,21 +11166,29 @@ return jQuery;
       return false;
     });
 
+
     this.$lightbox.find('.lb-prev').on('click', function() {
       if (self.currentImageIndex === 0) {
         self.changeImage(self.album.length - 1);
       } else {
         self.changeImage(self.currentImageIndex - 1);
       }
+        // dots[self.currentImageIndex].className += " active";
+        // dots[self.currentImageIndex + 1].className = dots[self.currentImageIndex + 1].className.replace(" active", "");
+
       return false;
     });
 
     this.$lightbox.find('.lb-next').on('click', function() {
+
       if (self.currentImageIndex === self.album.length - 1) {
         self.changeImage(0);
       } else {
         self.changeImage(self.currentImageIndex + 1);
       }
+
+      // dots[self.currentImageIndex].className += " active";
+      // dots[self.currentImageIndex - 1].className = dots[self.currentImageIndex - 1].className.replace(" active", "");
       return false;
     });
 
@@ -11560,6 +11585,22 @@ return jQuery;
       $('body').removeClass('lb-disable-scrolling');
     }
   };
+  let touchstartX = 0;
+  let touchendX = 0;
+
+  function handleGesture() {
+    if (touchendX > touchstartX) $(".lb-prev").trigger("click");
+    if (touchendX < touchstartX) $(".lb-next").trigger("click");
+  }
+
+  $(document).on("touchstart", ".lb-nav", e => {
+    touchstartX = e.changedTouches[0].screenX;
+  });
+
+  $(document).on("touchend", ".lb-nav", e => {
+    touchendX = e.changedTouches[0].screenX;
+    handleGesture();
+  });
 
   return new Lightbox();
 }));

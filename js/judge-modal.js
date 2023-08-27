@@ -3,21 +3,38 @@ const modal = document.querySelector('.judge-modal');
 const form = document.querySelector('.evaluations-form');
 const blur = document.querySelector('.blur');
 
-const radio = document.getElementsByClassName('evulation-radio')
+const radio = document.querySelectorAll('.evulation-radio')
 const balls = document.getElementById('balls')
 const ballsModal = document.getElementById('ballsModal')
 let numberBalls = 0;
+let modalBtn = document.querySelector('.open-modal')
 
-let arr = [];
+
 
 window.onload=function(){
   window.scrollBy(0, 30);
 }
+let radioNames = [];
+for (const i of radio) {
+  radioNames.push(i.name)
+  radioNames = [...new Set(radioNames)];
+}
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  modal.classList.remove('visually-hidden');
-  blur.classList.remove('visually-hidden')
+
+
+modalBtn.addEventListener('click', function() {
+
+  for (const i of radio) {
+    console.log(i.name);
+    
+  }
+  // radioNames.forEach(el => {
+  //   if (i.checked.name = el) {
+  //     console.log(el);
+  //     // modal.classList.remove('visually-hidden');
+  //     // blur.classList.remove('visually-hidden')
+  //   }
+  // });
 });
 
 closeBtn.addEventListener('click', function() {
